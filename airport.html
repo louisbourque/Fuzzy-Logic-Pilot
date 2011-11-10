@@ -36,7 +36,7 @@ config.final_leg = 229;
 // 1 knot = 0.5 pixels per minute
 // 10 knots = 5 ppm
 // 1 cycle = 10 seconds
-// 1 knot = 0.5/6 pixels per cycle
+// 1 knot = 0.5/18 pixels per cycle
 
 //aircraft class. This Aircraft is different that the one in pilot.js.
 //This class, along with information about the aircraft positon and state, holds the worker thread used to perform calculations leading to decisions
@@ -100,7 +100,7 @@ function run(){
 	}
 	clearTimeout(config.runTimeout);
 	if(!stop_running)
-		config.runTimeout = setTimeout(run, 150);
+		config.runTimeout = setTimeout(run, 50);
 	
 }
 

@@ -39,7 +39,7 @@ var nearby_flights;
 // 1 knot = 0.5 pixels per minute
 // 10 knots = 5 ppm
 // 1 cycle = 10 seconds
-// 1 knot = 0.5/6 pixels per cycle
+// 1 knot = 0.5/18 pixels per cycle
 
 //this is the function that is called whenever the worker receives a message.
 //based on the content of the message (event.data.act), do the appropriate action.
@@ -280,8 +280,8 @@ function update(){
 	
 	var heading_correction = heading_val_final.FSS_Defuzzification();
 	
-	//adjust heading based on correction divide by 6 for 1 cycle
-	me.heading = (me.heading + (heading_correction/6))%360;
+	//adjust heading based on correction divide by 18 for 1 cycle
+	me.heading = (me.heading + (heading_correction/18))%360;
 	
 	
 	// ALTITUDE CORRECTION
@@ -323,8 +323,8 @@ function update(){
 	
 	// adjust altitude based on correction
 	me.vsi = alt_correction;
-	//correction is feet per minute. Divide by 6 for 1 cycle
-	me.alt = me.alt + (alt_correction/6);
+	//correction is feet per minute. Divide by 18 for 1 cycle
+	me.alt = me.alt + (alt_correction/18);
 	
 	
 	// AIRSPEED CORRECTION
@@ -348,7 +348,7 @@ function update(){
 	me.airspeed = airspeed_val_final.FSS_Defuzzification();
 	
 	//determine how far the plane will move forward (in pixels)
-	var forward_movement = (0.5/6) * me.airspeed;
+	var forward_movement = (0.5/18) * me.airspeed;
 	
 	//postMessage('{"act":"debug","data":"'+airspeed_val_final.FSS_TextDisplay()+'"}');
 	//move the plane forward by forward_movement pixels
