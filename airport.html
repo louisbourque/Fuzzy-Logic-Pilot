@@ -189,6 +189,7 @@ function refresh_view(){
 		ctx.stroke();
 		ctx.fillStyle = "#FF0";
 		//display stats on the aircraft so we can see it's registration, alt and airspeed
+		ctx.font = "bold 10pt Courier";
 		ctx.fillText(flights[i].registration, center_x+42, center_y+25);
 		ctx.fillText(flights[i].alt, center_x+42, center_y+35);
 		ctx.fillText(flights[i].airspeed, center_x+42, center_y+45);
