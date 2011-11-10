@@ -4,8 +4,7 @@
 </head>
 <body>
 
-<input type="button" value="Start" onclick="start();">&nbsp;&nbsp;
-<input type="button" value="Stop" onclick="stop();">&nbsp;&nbsp;
+<input type="button" value="Start" id="stop_start" onclick="stop_start();">&nbsp;&nbsp;
 <input type="button" value="Add Plane" onclick="addPlane();">&nbsp;&nbsp;
 
 <span id="result"></span>
@@ -151,16 +150,25 @@ function handle_pilot_call(data){
 
 //start the run loop
 function start(){
+	document.getElementById('stop_start').value = "Stop";
 	clearTimeout(config.runTimeout);
 	stop_running = false;
 	run();
 }
 //pause the game
 function stop(){
+	document.getElementById('stop_start').value = "Start";
 	stop_running = true;
 	clearTimeout(config.runTimeout);
 }
 
+function stop_start(){
+	if(stop_running){
+		start();
+	}else{
+		stop();
+	}
+}
 
 //Redraw the screen based on the state
 function refresh_view(){
