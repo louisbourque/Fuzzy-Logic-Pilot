@@ -280,8 +280,8 @@ function update(){
 	
 	var heading_correction = heading_val_final.FSS_Defuzzification();
 	
-	//adjust heading based on correction divide by 18 for 1 cycle
-	me.heading = (me.heading + (heading_correction/18))%360;
+	//adjust heading based on correction divide by 36 for 1 cycle
+	me.heading = (me.heading + (heading_correction/36))%360;
 	
 	
 	// ALTITUDE CORRECTION
