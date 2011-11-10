@@ -7,6 +7,7 @@
 <input type="button" value="Start" id="stop_start" onclick="stop_start();">&nbsp;&nbsp;
 <input type="button" value="Add Plane" onclick="addPlane();">&nbsp;&nbsp;
 
+<label><input type="checkbox" id="auto_add_plane" checked>Auto Add Planes</label>
 <span id="result"></span>
 <br>
 <canvas id="canvas" width="800" height="500"></canvas>
@@ -216,6 +217,7 @@ function init(){
 		//flights['11'] = new Aircraft('11',750,100,2000,270,80);flights['12'] = new Aircraft('12',400,500,2000,360,100);
 		start();
 		refresh_view();
+		add_planes_loop();
 	}else{
 		setTimeout(init, 500);
 	}
@@ -260,6 +262,13 @@ function addPlane(){
 		}while(flights[callsign] != undefined)
 		flights[callsign] = new Aircraft(callsign,init_pos_x,init_pos_y,2000,init_heading,100);
 	}
+}
+
+function add_planes_loop(){
+	if(document.getElementById('auto_add_plane').checked){
+		addPlane();
+	}
+	setTimeout(add_planes_loop, 5000);
 }
 
 //returns any aircraft that is "too close" to the given airplane
