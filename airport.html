@@ -13,6 +13,19 @@
 <canvas id="canvas" width="800" height="500"></canvas>
 <img src="cyro.png" id="cyro_img" onload="cyro_ready = true;" style="display:none;">
 <img src="plane1.png" id="plane1_img" onload="plane1_ready = true;" style="display:none;">
+<div>
+<h2>Purpose</h2>
+<p>The goal for this project was to create Artificial Intelligence pilots who use Fuzzy Logic to make decisions as to what actions should be taken in order to safely land an airplane.</p>
+<h2>How it Works</h2>
+<p>The application uses a web worker for each pilot/aircraft. The web worker is used to compute the fuzzy logic, so the UI can remain responsive. The current state of the air traffic is drawn using a canvas element. Each pilot knows only where they want to go next, and what aircraft are nearby. With this information, each pilot uses fuzzy logic to determine how it's heading, airspeed and altitude need to be adjusted.</p>
+
+<h2>Fuzzy Logic</h2>
+<p>With traditional logic, we can have an answer of only 1 or 0 (True or False), but with fuzzy logic, we can have an answer anywhere from 1 to 0 (Somewhat True, Very False, etc...). With fuzzy logic, we can input various factors, and instead of getting a fixed answer, we get a fuzzy answer.</p>
+<p>Example 1: need to descend (descend) + aircraft underneath (climb) = maintain current altitude.</p>
+<p>Since we use fuzzy logic, the distances will have an impact:</p>
+<p>Example 2: need to descend very much (descend very much) + aircraft far underneath (climb a little) = descend a little.</p>
+
+</div>
 
 <script type="text/javascript">
 //config object used to set the parameters of the game. This object is passed to the worker thread to initialize it
