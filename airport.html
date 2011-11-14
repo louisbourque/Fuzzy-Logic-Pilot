@@ -10,7 +10,7 @@
 <label><input type="checkbox" id="auto_add_plane" checked>Auto Add Planes</label>
 <span id="result"></span>
 <br>
-<canvas id="canvas" width="800" height="500"></canvas>
+<canvas id="canvas" width="799" height="500"></canvas>
 <img src="cyro.png" id="cyro_img" onload="cyro_ready = true;" style="display:none;">
 <img src="plane1.png" id="plane1_img" onload="plane1_ready = true;" style="display:none;">
 <div>
@@ -113,7 +113,7 @@ function run(){
 	}
 	clearTimeout(config.runTimeout);
 	if(!stop_running)
-		config.runTimeout = setTimeout(run, 50);
+		config.runTimeout = setTimeout(run, 200);
 	
 }
 
@@ -158,8 +158,6 @@ function handle_pilot_call(data){
 				break;
 		}
 	}
-	// refresh the display to reflect any changes
-	refresh_view();
 }
 
 //start the run loop
@@ -201,12 +199,23 @@ function refresh_view(){
 		ctx.lineTo(center_x+40,center_y+25);
 		ctx.stroke();
 		ctx.fillStyle = "#FF0";
+		ctx.strokeStyle = "#000";
 		//display stats on the aircraft so we can see it's registration, alt and airspeed
-		ctx.font = "bold 10pt Courier";
+		ctx.font = "10pt Courier";
+		ctx.strokeText(flights[i].registration, center_x+42, center_y+25);
+		ctx.strokeText(flights[i].alt, center_x+42, center_y+35);
+		ctx.strokeText(flights[i].airspeed, center_x+42, center_y+45);
 		ctx.fillText(flights[i].registration, center_x+42, center_y+25);
 		ctx.fillText(flights[i].alt, center_x+42, center_y+35);
 		ctx.fillText(flights[i].airspeed, center_x+42, center_y+45);
+		
 	}
+	
+}
+
+function draw_loop(){
+	setTimeout(draw_loop, 200);
+	refresh_view();
 }
 
 //initialize
@@ -230,7 +239,7 @@ function init(){
 		//aircraft meet at downwind
 		//flights['11'] = new Aircraft('11',750,100,2000,270,80);flights['12'] = new Aircraft('12',400,500,2000,360,100);
 		start();
-		refresh_view();
+		draw_loop();
 		add_planes_loop();
 	}else{
 		setTimeout(init, 500);
