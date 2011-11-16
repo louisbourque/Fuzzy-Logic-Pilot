@@ -1,5 +1,5 @@
 <html>
-<head><title>COMP 4106 - Airport Simulation</title>
+<head><title>Fuzzy Logic Pilot</title>
 <script type="text/javascript" src="json2.js"></script>
 </head>
 <body>
@@ -65,7 +65,7 @@ function Aircraft(registration,x,y,alt,heading,airspeed){
 		handle_pilot_call(event.data);
 	};
 	this.pilot.onerror = function(error) {  
-		console.log(error.message);
+		//console.log(error.message);
 	};
 	//initialize the worker thread by sending it the parameters of the aircraft
 	var message = new Object();
@@ -133,7 +133,7 @@ function set_heading(plane,new_heading){
 function handle_pilot_call(data){
 	var resultObj = JSON.parse(data);
 	if(resultObj.act == undefined){
-		console.log(resultObj); //if the message was not set as expected, log it in firebug
+		//console.log(resultObj); //if the message was not set as expected, log it in firebug
 	}
 	else{
 		switch(resultObj.act){
