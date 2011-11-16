@@ -6,4 +6,4 @@ The goal for this project was to create Artificial Intelligence pilots who use F
 
 ##Demo
 
-http://louisbourque.github.com/Fuzzy-Logic-Pilot/airport.html
+http://louisbourque.github.com/Fuzzy-Logic-Pilot/
