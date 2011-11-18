@@ -89,7 +89,8 @@ function Aircraft(registration,x,y,alt,heading,airspeed){
 	set_heading(this,this.heading);
 }
 //the canvas used to draw the state of the game
-var ctx = document.getElementById('canvas').getContext("2d");
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext("2d");
 var cyro_area =  document.getElementById('cyro_img');
 var plane_image1 =  document.getElementById('plane1_img');
 
@@ -213,10 +214,23 @@ function refresh_view(){
 	
 }
 
-function draw_loop(){
-	setTimeout(draw_loop, 200);
-	refresh_view();
-}
+// shim layer with setTimeout fallback
+    window.requestAnimFrame = (function(){
+      return  window.requestAnimationFrame       || 
+              window.webkitRequestAnimationFrame || 
+              window.mozRequestAnimationFrame    || 
+              window.oRequestAnimationFrame      || 
+              window.msRequestAnimationFrame     || 
+              function(/* function */ callback, /* DOMElement */ element){
+                window.setTimeout(callback, 1000 / 60);
+              };
+    })();
+    
+    (function animloop(){
+      requestAnimFrame(animloop, canvas);
+      refresh_view();
+    })();
+
 
 //initialize
 function init(){
@@ -239,7 +253,6 @@ function init(){
 		//aircraft meet at downwind
 		//flights['11'] = new Aircraft('11',750,100,2000,270,80);flights['12'] = new Aircraft('12',400,500,2000,360,100);
 		start();
-		draw_loop();
 		add_planes_loop();
 	}else{
 		setTimeout(init, 500);
