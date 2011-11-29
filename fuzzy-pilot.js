@@ -67,6 +67,7 @@ var plane_image1;
 //game state
 var stop_running = true;
 var flights = new Object();
+var gamestate_updated = true;
 
 //initialize
 function init(){
@@ -149,6 +150,7 @@ function handle_pilot_call(data){
 						flights[resultObj.data.registration].airspeed = parseInt(resultObj.data.airspeed);
 					}
 				}
+				gamestate_updated = true;
 				break;
 		}
 	}
@@ -178,6 +180,8 @@ function stop_start(){
 
 //Redraw the screen based on the state
 function refresh_view(){
+	if(!gamestate_updated){return;}
+	gamestate_updated = false;
 	//draw the scenery, aircraft as appropriate
 	ctx.drawImage(cyro_area,0,0);
 	for (i in flights) {
