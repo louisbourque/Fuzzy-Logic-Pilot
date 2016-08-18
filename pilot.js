@@ -1,7 +1,4 @@
 //import scripts:
-//json2.js is an open source JSON parser, available at http://www.json.org/js.html
-//json2.js is used to convert objects to string when passing to/from the worker
-importScripts('json2.js');
 //fuzzy.js is a fuzzy logic library created by Alain Bonardi, Isis Truck - Ircam & Paris 8 University
 //fuzzy.js is available at http://imtr.ircam.fr/index.php/FuzzyLib and is free for artistic work and/or scientific research.
 importScripts('fuzzy.js');
